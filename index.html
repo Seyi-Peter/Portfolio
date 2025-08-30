@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oluwaseyi Akinlade | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-100">
+
+  <!-- Navbar -->
+  <nav class="bg-gray-800 shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center p-4">
+      <h1 class="text-xl font-bold">Oluwaseyi Akinlade</h1>
+      <ul class="flex space-x-6 items-center">
+        <li><a href="#about" class="hover:text-teal-400">About</a></li>
+        <li><a href="#skills" class="hover:text-teal-400">Skills</a></li>
+        <li><a href="#projects" class="hover:text-teal-400">Projects</a></li>
+        <li><a href="#contact" class="hover:text-teal-400">Contact</a></li>
+        <li>
+          <a href="cv.pdf"
+             download
+             class="bg-blue-500 px-3 py-1 rounded-lg text-white hover:bg-blue-600">
+             Download CV
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- About -->
+  <section id="about" class="container mx-auto p-10">
+    <h2 class="text-3xl font-bold mb-5 text-blue-400">About Me</h2>
+    <p class="text-gray-300 leading-relaxed">
+      I am a Cloud Engineer and Python Developer with over three years of experience in automation, API integration, back-end systems, and machine learning. 
+      Skilled in designing and deploying scalable solutions using Python, FastAPI, REST APIs, pandas, and scikit-learn, with strong expertise in cloud platforms, data analysis, and workflow automation. 
+      Adept at optimising processes, improving efficiency, and delivering real-world impact through clean, maintainable code and data-driven solutions. 
+      I hold a Bachelor’s degree in Computer Science from Lagos State University (LASU).
+    </p>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="container mx-auto p-10">
+    <h2 class="text-3xl font-bold mb-5 text-blue-400">Skills</h2>
+    <div class="grid md:grid-cols-2 gap-6 text-gray-300">
+      <div>
+        <h3 class="font-semibold text-white mb-2">Programming & Scripting</h3>
+        <p>Python (pandas, NumPy, scikit-learn, FastAPI), Bash, Git</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-white mb-2">Cloud & Infrastructure</h3>
+        <p>AWS (EC2, S3, Lambda, IAM), Docker</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-white mb-2">Automation & DevOps</h3>
+        <p>REST API integration, Task automation with Python</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-white mb-2">Data Analysis & Machine Learning</h3>
+        <p>pandas, NumPy, matplotlib, scikit-learn</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-white mb-2">Databases</h3>
+        <p>PostgreSQL, SQLite</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-white mb-2">Version Control & Collaboration</h3>
+        <p>Git, GitHub</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="container mx-auto p-10">
+    <h2 class="text-3xl font-bold mb-5">Projects</h2>
+
+    <!-- Project Example -->
+    <div class="bg-gray-800 rounded-xl p-5 shadow-lg mb-6">
+      <h3 class="text-xl font-semibold text-white mb-3">Robust Authentication System</h3>
+      <p class="text-gray-400 mb-3">
+        Secure authentication with Django & PostgreSQL. Role-based access control and encrypted credentials.
+      </p>
+      <pre class="bg-black text-green-400 p-3 rounded text-sm overflow-hidden h-40">
+from django.contrib.auth.backends import ModelBackend
+from django.contrib.auth import get_user_model
+# ...
+      </pre>
+      <p class="text-gray-400 text-sm mt-2">Project Screenshot:</p>
+      <img src="images/auth.png" 
+           alt="Robust Authentication System" 
+           class="rounded-lg w-full max-h-80 object-contain mb-3 transform transition-transform duration-300 hover:scale-105">
+    </div>
+
+    <!-- Repeat for other projects -->
+    <div class="bg-gray-800 rounded-xl p-5 shadow-lg mb-6">
+      <h3 class="text-xl font-semibold text-white mb-3">Cyberbullying Detection System</h3>
+      <p class="text-gray-400 mb-3">Trained CNN–GRU deep learning model to detect cyberbullying.</p>
+      <pre class="bg-black text-green-400 p-3 rounded text-sm overflow-hidden h-40">
+# Code snippet here
+      </pre>
+      <p class="text-gray-400 text-sm mt-2">Project Screenshot:</p>
+      <img src="images/cyberbullying.png" 
+           alt="Cyberbullying Detection System" 
+           class="rounded-lg w-full max-h-80 object-contain mb-3 transform transition-transform duration-300 hover:scale-105">
+    </div>
+
+    <!-- Machine Learning Chatbot -->
+    <div class="bg-gray-800 rounded-xl p-5 shadow-lg mb-6">
+      <h3 class="text-xl font-semibold text-white mb-3">Machine Learning Chatbot</h3>
+      <p class="text-gray-400 mb-3">Chatbot trained on a custom JSON dataset with NLP preprocessing and intent recognition.</p>
+      <pre class="bg-black text-green-400 p-3 rounded text-sm overflow-hidden h-40">
+# Code snippet here
+      </pre>
+      <p class="text-gray-400 text-sm mt-2">Project Screenshot:</p>
+      <img src="images/chatbot.png" 
+           alt="Machine Learning Chatbot" 
+           class="rounded-lg w-full max-h-80 object-contain mb-3 transform transition-transform duration-300 hover:scale-105">
+    </div>
+
+    <!-- Handwriting Recognition -->
+    <div class="bg-gray-800 rounded-xl p-5 shadow-lg mb-6">
+      <h3 class="text-xl font-semibold text-white mb-3">Handwriting Recognition</h3>
+      <p class="text-gray-400 mb-3">ML model for handwriting-based authentication using deep learning.</p>
+      <pre class="bg-black text-green-400 p-3 rounded text-sm overflow-hidden h-40">
+# Code snippet here
+      </pre>
+      <p class="text-gray-400 text-sm mt-2">Project Screenshot:</p>
+      <img src="images/handwriting.png" 
+           alt="Handwriting Recognition" 
+           class="rounded-lg w-full max-h-80 object-contain mb-3 transform transition-transform duration-300 hover:scale-105">
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="container mx-auto p-10 text-center">
+    <h2 class="text-3xl font-bold mb-5 text-blue-400">Contact Me</h2>
+    <p class="text-gray-300 mb-6">Feel free to reach out to me via any of the platforms below:</p>
+
+    <div class="flex justify-center space-x-8 text-gray-300 text-2xl">
+      <a href="mailto:akinladeoluwaseyi74@gmail.com" class="hover:text-blue-400">
+        <!-- Email icon -->
+        📧
+      </a>
+      <a href="https://github.com/Seyi-Peter" target="_blank" class="hover:text-blue-400">
+        <!-- GitHub icon -->
+        🐙
+      </a>
+      <a href="https://www.linkedin.com/in/oluwaseyi-akinlade-557048317/" target="_blank" class="hover:text-blue-400">
+        <!-- LinkedIn icon -->
+        🔗
+      </a>
+      <a href="https://wa.me/2348128866126" target="_blank" class="text-green-400 hover:text-green-500">
+        <!-- WhatsApp icon -->
+        💬
+      </a>
+    </div>
+  </section>
+
+  <!-- Auto-scroll JS -->
+  <script>
+    function autoScroll(el) {
+      let scrollInterval;
+      let scrolling = false;
+      let stopTimeout;
+
+      const startScroll = () => {
+        if (scrolling) return;
+        scrolling = true;
+        scrollInterval = setInterval(() => {
+          el.scrollTop += 1;
+          if (el.scrollTop + el.clientHeight >= el.scrollHeight) {
+            clearInterval(scrollInterval);
+            scrolling = false;
+            stopTimeout = setTimeout(() => {
+              el.scrollTop = 0;
+            }, 2000);
+          }
+        }, 30);
+      };
+
+      const stopScroll = () => {
+        clearInterval(scrollInterval);
+        scrolling = false;
+        if (el.scrollTop > 0) {
+          let scrollUp = setInterval(() => {
+            el.scrollTop -= 1;
+            if (el.scrollTop <= 0) clearInterval(scrollUp);
+          }, 30);
+        }
+        clearTimeout(stopTimeout);
+      };
+
+      el.addEventListener("mouseenter", startScroll);
+      el.addEventListener("mouseleave", () => {
+        const distanceToBottom = el.scrollHeight - el.scrollTop - el.clientHeight;
+        if (distanceToBottom > 0) return;
+        stopScroll();
+      });
+    }
+
+    document.querySelectorAll("pre").forEach(autoScroll);
+  </script>
+
+</body>
+</html>
