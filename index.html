@@ -83,7 +83,23 @@
       <pre class="bg-black text-green-400 p-3 rounded text-sm overflow-hidden h-40">
 from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth import get_user_model
-# ...
+
+UserModel = get_user_model()
+
+class EmailOrUsernameModelBackend(ModelBackend):
+    """
+    Custom authentication to allow login with either username or email.
+    """
+    def authenticate(self, request, username=None, password=None, **kwargs):
+        if username is None:
+            username = kwargs.get(UserModel.USERNAME_FIELD)
+
+        users = UserModel.objects.filter(email=username) if '@' in username else UserModel.objects.filter(username=username)
+
+        for user in users:
+            if user.check_password(password) and self.user_can_authenticate(user):
+                return user
+        return None
       </pre>
       <p class="text-gray-400 text-sm mt-2">Project Screenshot:</p>
       <img src="images/auth.png" 
@@ -96,7 +112,27 @@ from django.contrib.auth import get_user_model
       <h3 class="text-xl font-semibold text-white mb-3">Cyberbullying Detection System</h3>
       <p class="text-gray-400 mb-3">Trained CNN–GRU deep learning model to detect cyberbullying.</p>
       <pre class="bg-black text-green-400 p-3 rounded text-sm overflow-hidden h-40">
-# Code snippet here
+import pickle
+
+import numpy as np
+import pandas as pd
+from keras.layers import Embedding, Conv1D, MaxPooling1D, GRU, Dense, Dropout, BatchNormalization
+from keras.models import Sequential, load_model
+from keras_preprocessing.sequence import pad_sequences
+from keras_preprocessing.text import Tokenizer
+from sklearn.metrics import classification_report
+from sklearn.model_selection import train_test_split
+
+# Load the original dataset
+original_data = pd.read_csv('cyberbullying.csv')
+original_data['Text'] = original_data['Text'].fillna('')
+
+texts_original = original_data['Text']
+labels_original = (original_data['CB_Label']).astype(int)
+# Tokenize the text data of the original dataset
+tokenizer = Tokenizer()
+tokenizer.fit_on_texts(texts_original)
+vocab_size = len(tokenizer.word_index) + 1
       </pre>
       <p class="text-gray-400 text-sm mt-2">Project Screenshot:</p>
       <img src="images/cyberbullying.png" 
@@ -109,7 +145,23 @@ from django.contrib.auth import get_user_model
       <h3 class="text-xl font-semibold text-white mb-3">Machine Learning Chatbot</h3>
       <p class="text-gray-400 mb-3">Chatbot trained on a custom JSON dataset with NLP preprocessing and intent recognition.</p>
       <pre class="bg-black text-green-400 p-3 rounded text-sm overflow-hidden h-40">
-# Code snippet here
+import json
+import re
+
+import random_responses
+
+# Load JSON data
+def load_json(file):
+    with open(file) as bot_responses:
+        print(f"Loaded '{file}' successfully!")
+        return json.load(bot_responses)
+
+# Store JSON data
+response_data = load_json("bot.json")
+
+def get_response(input_string):
+    split_message = re.split(r'\s+|[,;?!.-]\s*', input_string.lower())
+    score_list = []
       </pre>
       <p class="text-gray-400 text-sm mt-2">Project Screenshot:</p>
       <img src="images/chatbot.png" 
@@ -131,28 +183,41 @@ from django.contrib.auth import get_user_model
     </div>
   </section>
 
-  <!-- Contact -->
+<!-- Contact -->
   <section id="contact" class="container mx-auto p-10 text-center">
     <h2 class="text-3xl font-bold mb-5 text-blue-400">Contact Me</h2>
     <p class="text-gray-300 mb-6">Feel free to reach out to me via any of the platforms below:</p>
-
+  
     <div class="flex justify-center space-x-8 text-gray-300 text-2xl">
-      <a href="mailto:akinladeoluwaseyi74@gmail.com" class="hover:text-blue-400">
-        <!-- Email icon -->
-        📧
+      <!-- Email -->
+      <a href="mailto:akinladeoluwaseyi74@gmail.com" class="hover:text-blue-400 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M16 12h.01M8 12h.01M12 12h.01M21 12c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8 8 3.582 8 8z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 8l8 5 8-5M4 16V8l8 5 8-5v8H4z" />
+        </svg>
       </a>
-      <a href="https://github.com/Seyi-Peter" target="_blank" class="hover:text-blue-400">
-        <!-- GitHub icon -->
-        🐙
+  
+      <!-- GitHub -->
+      <a href="https://github.com/Seyi-Peter" target="_blank" class="hover:text-blue-400 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.612-4.042-1.612-.546-1.387-1.335-1.756-1.335-1.756-1.09-.744.083-.729.083-.729 1.205.085 1.838 1.238 1.838 1.238 1.07 1.834 2.807 1.304 3.492.997.107-.776.418-1.305.76-1.605-2.665-.305-5.466-1.334-5.466-5.932 0-1.31.467-2.382 1.235-3.222-.124-.304-.535-1.527.117-3.176 0 0 1.008-.322 3.3 1.23a11.45 11.45 0 0 1 3-.404 11.45 11.45 0 0 1 3 .404c2.29-1.552 3.296-1.23 3.296-1.23.654 1.649.243 2.872.12 3.176.77.84 1.234 1.912 1.234 3.222 0 4.61-2.804 5.624-5.475 5.921.43.37.815 1.096.815 2.21 0 1.594-.015 2.875-.015 3.265 0 .32.216.694.825.576C20.565 22.296 24 17.796 24 12.5 24 5.87 18.627.5 12 .5z"/>
+        </svg>
       </a>
-      <a href="https://www.linkedin.com/in/oluwaseyi-akinlade-557048317/" target="_blank" class="hover:text-blue-400">
-        <!-- LinkedIn icon -->
-        🔗
+  
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/in/oluwaseyi-akinlade-557048317/" target="_blank" class="hover:text-blue-400 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M20.447 20.452H17.43V14.88c0-1.327-.025-3.034-1.848-3.034-1.848 0-2.132 1.445-2.132 2.938v5.668h-3.017V9h2.898v1.561h.041c.404-.766 1.388-1.562 2.857-1.562 3.056 0 3.62 2.012 3.62 4.629v6.864zM5.337 7.433a1.75 1.75 0 1 1 0-3.5 1.75 1.75 0 0 1 0 3.5zM6.838 20.452H3.835V9h3.003v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.728v20.543C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.271V1.728C24 .774 23.2 0 22.225 0z"/>
+        </svg>
       </a>
-      <a href="https://wa.me/2348128866126" target="_blank" class="text-green-400 hover:text-green-500">
-        <!-- WhatsApp icon -->
-        💬
-      </a>
+      <a href="https://wa.me/2348128866126" target="_blank" class="text-green-400 hover:text-green-500 flex items-center gap-2">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12.04 2c-5.51 0-9.98 4.47-9.98 9.98 0 1.76.46 3.42 1.26 4.88L2 22l5.26-1.35c1.45.79 3.11 1.25 4.78 1.25 5.51 0 9.98-4.47 9.98-9.98S17.55 2 12.04 2zm5.44 14.44c-.19.54-1.09 1.04-1.5 1.12-.38.08-.84.12-3.32-1.25-2.93-1.66-4.8-5.05-4.94-5.28-.14-.23-1.14-1.74-1.14-3.31s.88-2.35 1.19-2.67c.31-.31.67-.3.93-.3.24 0 .38.01.55.02.17.02.4-.06.63.47.23.53.77 1.83.84 1.96.07.13.12.29.02.47-.1.17-.15.27-.3.42-.15.15-.3.33-.43.44-.13.11-.28.25-.16.5.12.25.54.87 1.16 1.42.8.74 1.47.99 1.7 1.1.23.12.37.1.5-.06.12-.15.54-.63.68-.85.14-.22.29-.18.48-.11.19.06 1.2.56 1.41.66.22.11.37.17.42.28.05.12.05.7-.14 1.24z"/>
+    </svg>
+  </a>
+  
     </div>
   </section>
 
