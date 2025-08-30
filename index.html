@@ -174,7 +174,17 @@ def get_response(input_string):
       <h3 class="text-xl font-semibold text-white mb-3">Handwriting Recognition</h3>
       <p class="text-gray-400 mb-3">ML model for handwriting-based authentication using deep learning.</p>
       <pre class="bg-black text-green-400 p-3 rounded text-sm overflow-hidden h-40">
-# Code snippet here
+from sklearn.datasets import load_digits
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+digits = load_digits()  # Load handwriting dataset (0–9 digits)
+X_train, X_test, y_train, y_test = train_test_split(digits.data, digits.target, test_size=0.2)
+model = LogisticRegression(max_iter=10000)  # Train classifier
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+print("Accuracy:", accuracy_score(y_test, y_pred))
       </pre>
       <p class="text-gray-400 text-sm mt-2">Project Screenshot:</p>
       <img src="images/handwriting.png" 
